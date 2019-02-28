@@ -6,8 +6,6 @@ Intermediate JS
 - what is the native DOM API?
 
 
-Intermediate 2 Checklist
-
 
 # AJAX
 what is the XHR object?
@@ -95,7 +93,7 @@ Note: **readyState Values**
 
 
 # jQuery
-A JS library used for DOM manipulation, DOM, and JS libraries. jQuery gets replaced at the framework level (React, Angular, Vue).
+A JS library used for DOM manipulation, DOM, and JS libraries. jQuery gets replaced at the framework level (React, Angular, Vue). It's been this way since at least 2015.
 
 Functions begin with `$`. This is an alias for jQuery.
 
@@ -133,7 +131,7 @@ Link: https://www.smashingmagazine.com/2014/05/mystery-jquery-object-syntax-basi
 
 There's a difference between setters and getters. Setters set the value within them, while getters return them.
 
-*html / text / val*
+
 
 - getters
     ```
@@ -152,13 +150,69 @@ There's a difference between setters and getters. Setters set the value within t
         $("input").val("new value"); // value = new value
     });
     ```
+- *html / text / val*
+- *addClass / removeClass / toggleClass*
+- *css / data / attr*
 
+
+
+- Animating: remember `slide`, `fade`, and `delay`.
+    - `slideDown`, `slideUp`
+    - `fadeIn`, `fadeOut`
+    - `slideToggle` and `fadeToggle`
+
+
+----------
+**filters**
+
+http://api.jquery.com/category/traversing/filtering/
+
+Function Filters
+
+| function | Does |
+| .eq() | select elements at a specific index, for instance do .eq(3) for the third li element. |
+| .filter() | select elements that match the selector or pass a test |
+| .first() | select first in the set |
+| .has() | select elemetnts with a descendant matching the selector |
+| .is() | check selected elements against an object which might return true if at least one matches the args ?? |
+| .last() | if you ain't first you're last |
+| .map() | produce new jQuery objects containing return values |
+| .not() | remove elements from the set of matched elements |
+| .slice() | reduce set of matched elements to a specified range of indices |
     
-    
+ ----------
+ **adding and removing elements**
+ 
+ ```
+ // after / before / append / prepend
+after // add elements to DOM after selected element
+before // add elements to DOM before selected element
+append // add selected elemnts nested at the end
+prepend // add selected elements nested at the beginning
+```
+ 
+ 
 
  ----------
 **callbacks**
-Remember a callback function passed as an argument to another function executed after its parent has completed. 
+
+A callback function passed as an argument to another function executed after its parent has completed.  
+
+This means that a function fires off before, and then it's used as an argument in the 2nd function, so when you fire it, you fire the 2nd function with the first function as it's argument.
+
+'''
+function greeting(name) {
+  alert('Hello ' + name);
+}
+
+function processUserInput(callback) {
+  var name = prompt('Please enter your name.');
+  callback(name);
+}
+
+processUserInput(greeting);
+'''
+
 
 - `$.get( "myhtmlpage.html", myCallBack );`
     - execute a function `myCallBack` after the HTML page loads.
@@ -170,7 +224,55 @@ Remember a callback function passed as an argument to another function executed 
             myCallBack( param1, param2 );
         }); 
         ```
-    - 
+
+
+https://www.youtube.com/watch?v=pTbSfCT42_M
+
+- **example 1**
+    ``` 
+    let x = function(){
+        console.log("something");
+    };
+    
+    let y = function(callback){
+        console.log('y activated');
+        callback();
+    }
+    y(x);
+    ```
+
+    A callback is a function, could be saved to a variable, which is then summoned through being called as an argument.
+
+- **example 2**
+
+synchronous callback
+
+```
+function greeting(name) {
+  alert('Hello ' + name);
+}
+
+function processUserInput(callback) {
+  var name = prompt('Please enter your name.');
+  callback(name);
+}
+
+processUserInput(greeting);
+```
+
+ 
+- **example 3** 
+
+asynchronous callback
+
+Use `.then()` chained to the end of a promise, used in fetchAPIs
+ 
+
+ 
+
+ ----------
+ 
+Some exercises: https://codepen.io/official-mitchell/pen/bzJyBL
 
 
 
